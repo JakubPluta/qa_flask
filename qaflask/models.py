@@ -1,7 +1,11 @@
 from .extensions import db
+from flask_login import UserMixin
+from werkzeug.security import generate_password_hash
+
+#todo add email to model
 
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
     password = db.Column(db.String(150))
@@ -21,6 +25,14 @@ class User(db.Model):
         backref='expert', 
         lazy=True
     )
+
+    @property
+    def not_hashed_password(self):
+        raise AttributeError('Cannot view unhashed password!')
+
+    @not_hashed_password.setter
+    def not_hashed_password(self, unhashed_password):
+        self.password = generate_password_hash(unhashed_password)
    
  
 class Question(db.Model):
