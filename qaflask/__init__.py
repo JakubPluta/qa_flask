@@ -4,11 +4,17 @@ from .commands import create_tables
 from .models import User, Question
 from .routes.auth import auth
 from .routes.main import main
+from flask_mail import Mail
 
 
-@login_manager.user_loader
-def load_user(user_id):
-    return User.get(user_id)
+# @login_manager.user_loader
+# def load_user(user_id):
+#     return User.get(user_id)
+
+
+login_manager.login_view = 'users.login'
+login_manager.login_message_category = 'info'
+mail = Mail()
 
 
 def create_app(config_file='settings.py'):
@@ -18,7 +24,6 @@ def create_app(config_file='settings.py'):
 
     db.init_app(app)
     login_manager.init_app(app)
-    login_manager.login_view = ''
 
     app.register_blueprint(main)
     app.register_blueprint(auth)
