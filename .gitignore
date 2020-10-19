@@ -1,1 +1,3 @@
 /qaflask/db.sqlite3
+/.env
+/.flaskenv
