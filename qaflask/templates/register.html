@@ -1,35 +1,118 @@
 {% extends 'base.html' %}
-{% block title %}Questions & Answers{% endblock %}
+{% block title %}Register{% endblock %}
+
+<head>
+	<title>Login </title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{% block content %}
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{{ url_for('static', filename='images/icons/favicon.ico') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fonts/iconic/css/material-design-iconic-font.min.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/animate/animate.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/css-hamburgers/hamburgers.min.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/animsition/css/animsition.min.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/select2/select2.min.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/daterangepicker/daterangepicker.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/util.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
 
 
-{% block content %}
-<div class="page-header">
-        <h1>Register</h1>
-      </div>
-        <div class="row">
-          <div class="col-lg-8">
-            <div class="well bs-component">
-              <form class="form-horizontal" method="POST" action="{{ url_for('main.register') }}">
-                <fieldset>
-                  <div class="form-group">
-                    <label for="inputName" class="col-lg-2 control-label">Name</label>
-                    <div class="col-lg-10">
-                      <input type="text" class="form-control" name="name" id="inputName" placeholder="Name">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputPassword" class="col-lg-2 control-label">Password</label>
-                    <div class="col-lg-10">
-                      <input type="password" class="form-control" name="password" id="inputPassword" placeholder="Password">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-lg-10 col-lg-offset-2">
-                      <button type="submit" class="btn btn-primary">Register</button>
-                    </div>
-                  </div>
-                </fieldset>
-              </form>
-            </div>
-          </div>
+<!--===============================================================================================-->
+</head>
+<body>
+
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form">
+					<span class="login100-form-title p-b-26">
+						Welcome
+					</span>
+					<span class="login100-form-title p-b-48">
+						<i class="zmdi zmdi-font"></i>
+					</span>
+
+					<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
+						<input class="input100" type="text" name="email">
+						<span class="focus-input100" data-placeholder="Email"></span>
+					</div>
+
+                    <div class="wrap-input100 validate-input" data-validate = "Enter login">
+						<input class="input100" type="text" name="login">
+						<span class="focus-input100" data-placeholder="Login"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Enter password">
+						<span class="btn-show-pass">
+							<i class="zmdi zmdi-eye"></i>
+						</span>
+						<input class="input100" type="password" name="pass">
+						<span class="focus-input100" data-placeholder="Password"></span>
+					</div>
+
+                  <div class="wrap-input100 validate-input" data-validate="Enter password">
+						<span class="btn-show-pass">
+							<i class="zmdi zmdi-eye"></i>
+						</span>
+						<input class="input100" type="password" name="pass_confirm">
+						<span class="focus-input100" data-placeholder="Confirm Password"></span>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn">
+								Register
+							</button>
+						</div>
+					</div>
+                  <div class="text-center p-t-115">
+						<span class="txt1">
+							Already have an account ?
+						</span>
+						<a class="txt2" href="{{ url_for('main.login') }}">
+							Log In
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+		<script src="{{ url_for('static', filename='vendor/jquery/jquery-3.2.1.min.js') }}" crossorigin="anonymous"></script>
+<!--===============================================================================================-->
+		<script src="{{ url_for('static', filename='vendor/animsition/js/animsition.min.js') }}" crossorigin="anonymous"></script>
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='vendor/bootstrap/js/popper.js') }}" crossorigin="anonymous"></script>
+	<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js') }}" crossorigin="anonymous"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+	<script src="{{ url_for('static', filename='js/main2.js') }}" crossorigin="anonymous"></script>
+<!--===============================================================================================-->
+
+
+	<script src="{{ url_for('static', filename='vendor/daterangepicker/moment.min.js') }}" crossorigin="anonymous"></script>
+	<script src="{{ url_for('static', filename='vendor/daterangepicker/daterangepicker.js') }}" crossorigin="anonymous"></script>
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='vendor/countdowntime/countdowntime.js') }}" crossorigin="anonymous"></script>
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='js/main2.js') }}" crossorigin="anonymous"></script>
+</body>
+</html>
 {% endblock %}
