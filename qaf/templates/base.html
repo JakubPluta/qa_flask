@@ -34,6 +34,8 @@
             {% endif %}
             {% if current_user.is_authenticated %}
             <li><a href="{{ url_for('main.ask') }}">Ask Question</a></li>
+            <a class="nav-item nav-link" href="{{ url_for('auth.account') }}">Account</a>
+            <a class="nav-item nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
             {% endif %}
             {% if current_user.is_authenticated and current_user.expert %}
             <li><a href="{{ url_for('main.unanswered') }}">Unanswered Questions</a></li>

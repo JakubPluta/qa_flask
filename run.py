@@ -1,4 +1,4 @@
-from qaflask import create_app
+from qaf import create_app
 
 
 app = create_app()

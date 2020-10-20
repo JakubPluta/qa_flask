@@ -1,17 +1,24 @@
-from flask_wtf import FlaskForm
+from flask_wtf import FlaskForm, RecaptchaField
 from flask_wtf.file import FileField, FileAllowed
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flask_login import current_user
-from qaflask.models import User, Question
+from qaf.models import User, Question
 
 
 class RegistrationForm(FlaskForm):
-    username = StringField('Username',validators=[DataRequired(), Length(min=3, max=30)])
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
-    submit = SubmitField('Sign Up')
+    username = StringField('Username',validators=[DataRequired(), Length(min=3, max=30)],
+                           render_kw={"placeholder": "Enter Username"})
+    email = StringField('Email', validators=[DataRequired(message="Enter a Username."),
+                                             Email(message='Not a valid email address.')],
+                        render_kw={"placeholder": "Enter Email address"})
+    password = PasswordField('Password', validators=[DataRequired(message="Enter password.")],
+                             render_kw={"placeholder": "Enter strong password"})
+    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password',
+                                                                                             message='Passwords must match.' )],
+                                     render_kw={"placeholder": "Confirm your password"})
+    recaptcha = RecaptchaField()
+    submit = SubmitField('Register')
 
     def validate_username(self, username):
         user = User.query.filter_by(username=username.data).first()

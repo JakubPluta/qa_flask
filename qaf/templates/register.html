@@ -36,56 +36,87 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form" method="POST">
+				<form class="login100-form validate-form" method="POST" action="">
+					{{ form.hidden_tag() }}
 					<span class="login100-form-title p-b-26">
-						Hellooo....
+						Welcome
 					</span>
 					<span class="login100-form-title p-b-48">
 						<i class="zmdi zmdi-font"></i>
 					</span>
 
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
-						<input class="input100" type="text" name="email">
-						<span class="focus-input100" data-placeholder="Email"></span>
-					</div>
 
-                    <div class="wrap-input100 validate-input" data-validate = "Enter login">
-						<input class="input100" type="text" name="login">
-						<span class="focus-input100" data-placeholder="Login"></span>
-					</div>
+					<div class="form-group">
+                    {{ form.username.label(class="form-control-label") }}
 
-					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<span class="btn-show-pass">
-							<i class="zmdi zmdi-eye"></i>
-						</span>
-						<input class="input100" type="password" name="pass">
-						<span class="focus-input100" data-placeholder="Password"></span>
-					</div>
+                    {% if form.username.errors %}
+                        {{ form.username(class="form-control form-control-md is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.username.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.username(class="form-control form-control-md") }}
+                    {% endif %}
+                	</div>
 
-                  <div class="wrap-input100 validate-input" data-validate="Enter password">
-						<span class="btn-show-pass">
-							<i class="zmdi zmdi-eye"></i>
-						</span>
-						<input class="input100" type="password" name="pass_confirm">
-						<span class="focus-input100" data-placeholder="Confirm Password"></span>
-					</div>
+					<div class="form-group">
+                    {{ form.email.label(class="form-control-label") }}
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-md is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control form-control-md") }}
+                    {% endif %}
+                	</div>
 
+					<div class="form-group">
+                    {{ form.password.label(class="form-control-label") }}
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control form-control-md is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class="form-control form-control-md") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.confirm_password.label(class="form-control-label") }}
+                    {% if form.confirm_password.errors %}
+                        {{ form.confirm_password(class="form-control form-control-md is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.confirm_password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.confirm_password(class="form-control form-control-md") }}
+                    {% endif %}
+                </div>
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn">
-								Register
-							</button>
+								{{ form.submit(class="btn login100-form-btn") }}
 						</div>
 					</div>
-                  <div class="text-center p-t-115">
+                    <br>
+                    <div class="container-login100-form-btn">
 						<span class="txt1">
 							Already have an account ?
 						</span>
+                        <br>
 						<a class="txt2" href="{{ url_for('auth.login') }}">
-							Log In
+							 Log In
 						</a>
-					</div>
+                    </div>
 				</form>
 			</div>
 		</div>
@@ -102,7 +133,7 @@
 	<script src="{{ url_for('static', filename='vendor/bootstrap/js/popper.js') }}" crossorigin="anonymous"></script>
 	<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js') }}" crossorigin="anonymous"></script>
 <!--===============================================================================================-->
-	<script src="vendor/select2/select2.min.js"></script>
+	<script src="{{ url_for('static', filename='vendor/select2/select2.min.js') }}" crossorigin="anonymous"></script>
 	<script src="{{ url_for('static', filename='js/main2.js') }}" crossorigin="anonymous"></script>
 <!--===============================================================================================-->
 

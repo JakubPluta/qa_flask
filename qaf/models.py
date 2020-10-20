@@ -1,10 +1,8 @@
-from .extensions import db
+from qaf import db, login_manager
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash
-from datetime import datetime as dt
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask import current_app
-from qaflask import login_manager
 
 
 @login_manager.user_loader
