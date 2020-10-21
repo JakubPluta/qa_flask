@@ -9,8 +9,8 @@ main = Blueprint('main', __name__)
 @main.route('/')
 def home():
     # "Query only answered questions"
-    questions = Question.query.filter(Question.answer != None).all()
-    #questions = Question.query.all()
+    #questions = Question.query.filter(Question.answer != None).all()
+    questions = Question.query.all()
     context = {
         'questions' : questions
     }

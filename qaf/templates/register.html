@@ -21,7 +21,6 @@
 						<i class="zmdi zmdi-font"></i>
 					</span>
 
-
 					<div class="form-group">
                     {{ form.username.label(class="form-control-label") }}
 
@@ -76,6 +75,14 @@
                     {% else %}
                         {{ form.confirm_password(class="form-control form-control-md") }}
                     {% endif %}
+                    <br>
+                 <div class="container">
+
+                    {{ form.expert(class="form-check-input") }}
+                    {{ form.expert.label(class="form-check-label") }}
+
+                </div>
+
                 </div>
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">

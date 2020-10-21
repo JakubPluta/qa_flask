@@ -17,6 +17,8 @@ class RegistrationForm(FlaskForm):
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password',
                                                                                              message='Passwords must match.' )],
                                      render_kw={"placeholder": "Confirm your password"})
+    expert = BooleanField('Expert', validators=[DataRequired()],
+                          render_kw={"placeholder": "Are you an expert ?"})
     submit = SubmitField('Register')
 
     def validate_username(self, username):
@@ -70,8 +72,6 @@ class ResetPasswordForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Reset Password')
-
-
 
 
 class QuestionForm(FlaskForm):
