@@ -32,9 +32,5 @@ def create_app(config_file='settings.py'):
     app.register_blueprint(main)
     app.register_blueprint(auth)
 
-    from .models import User, Question
-    with app.app_context():
-        db.create_all()  # Create sql tables for our data models
-
     return app
 

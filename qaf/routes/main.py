@@ -32,7 +32,7 @@ def ask():
         db.session.commit()
         return redirect(url_for('main.home'))
 
-    experts = User.query.filter_by(expert=True).all()
+    experts = User.query.all()
     context = {
         'experts' : experts
     }
@@ -81,18 +81,6 @@ def unanswered():
         'unanswered_questions' : unanswered_questions
     }
     return render_template('unanswered.html', **context)
-
-
-@main.route('/users')
-@login_required
-def users():
-    if not current_user.admin:
-        return redirect(url_for('main.home'))
-    users = User.query.filter_by(admin=False).all()
-    context = {
-        'users' : users
-    }
-    return render_template('users.html', **context)
 
 
 @main.route('/promote/<int:user_id>')

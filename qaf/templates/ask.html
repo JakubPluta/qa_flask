@@ -22,7 +22,8 @@
                     <div class="col-lg-10">
                       <select class="form-control" name="expert" id="select">
                         {% for expert in experts %}
-                        <option value="{{ expert.id }}">{{ expert.name }}</option>
+                        <option value="{{ expert.id }}">{{ expert.username }}</option>
+                        <p>{{ expert }}</p>
                         {% endfor %}
                       </select>
                     </div>
