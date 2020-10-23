@@ -2,30 +2,29 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import current_user, login_required
 from qaf import db
 from qaf.models import Question, User
+from qaf.forms.forms import QuestionForm
 
 main = Blueprint('main', __name__)
 
 
 @main.route('/')
 def home():
-    # "Query only answered questions"
-    #questions = Question.query.filter(Question.answer != None).all()
     questions = Question.query.all()
-    context = {
-        'questions' : questions
-    }
-    return render_template('home.html', **context)
+    return render_template('home.html', questions=questions)
 
 
 @main.route('/ask', methods=['GET', 'POST'])
 @login_required
 def ask():
-    if request.method == 'POST':
-        question = request.form['question']
-        expert = request.form['expert']
+    form = QuestionForm()
+    if form.validate_on_submit():
+        question = form.data.get('question')
+        expert = form.data.get('expert')
+        expert = User.query.filter_by(id=int(expert)).first()
+
         question = Question(
             question=question,
-            expert_id=expert,
+            expert_id=expert.id,
             asked_by_id=current_user.id
         )
         db.session.add(question)
@@ -34,7 +33,8 @@ def ask():
 
     experts = User.query.all()
     context = {
-        'experts' : experts
+        'experts' : experts,
+        'form' : form
     }
     return render_template('ask.html', **context)
 

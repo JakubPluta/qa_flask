@@ -75,6 +75,6 @@ class ResetPasswordForm(FlaskForm):
 
 
 class QuestionForm(FlaskForm):
-    question = StringField('Question',validators=[DataRequired()])
-    content = TextAreaField('Content', validators=[DataRequired()])
+    question = TextAreaField('Content', validators=[DataRequired()])
+    expert = StringField('Expert')
     submit = SubmitField('Add')

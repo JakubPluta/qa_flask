@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% block title %}Ask a Question{% endblock %}
-
 {% block content %}
       <div class="page-header">
         <h1>Ask A Question</h1>
@@ -8,16 +7,20 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="well bs-component">
+
             <form class="form-horizontal" method="POST" action="{{ url_for('main.ask') }}">
-              <fieldset>
                 <div class="form-group">
-                  <label for="textArea" class="col-lg-2 control-label">Question</label>
-                    <div class="col-lg-10">
-                      <textarea class="form-control" name="question" rows="3" id="textArea"></textarea>
-                      <span class="help-block">Ask away!</span>
-                    </div>
-                  </div>
-                  <div class="form-group">
+                    {{ form.csrf_token }}
+                    {{ form.question.label(class="form-control-label") }}
+                    {{ form.question(class="form-control form-control-lg") }}
+                    {% if form.question.errors %}
+                        {% for error in form.question.errors %}
+                        <span class="error">
+                          {{ error }}
+                        </span>
+                        {% endfor %}
+                    {% endif %}
+                    <div class="form-group">
                     <label for="select" class="col-lg-2 control-label">Expert</label>
                     <div class="col-lg-10">
                       <select class="form-control" name="expert" id="select">
@@ -28,15 +31,10 @@
                       </select>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <div class="col-lg-10 col-lg-offset-2">
-                      <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
                     </div>
-                  </div>
-                </fieldset>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
+                  <form>
+
+
 {% endblock %}
