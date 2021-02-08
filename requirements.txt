@@ -4,3 +4,6 @@ flask-login
 flask-mail
 itsdangerous
 werkzeug
+python-dotenv
+flask_migrate
+flask_bcrypt
